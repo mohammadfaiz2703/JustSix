@@ -1,1 +1,23 @@
 //All the code will be here.
+int sensorPin = A0;
+int relayPin = 7;
+
+void setup() {
+  pinMode(relayPin, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  int moisture = analogRead(sensorPin);
+
+  Serial.print("Moisture: ");
+  Serial.println(moisture);
+
+  if (moisture > 500) {
+    digitalWrite(relayPin, LOW); // Pump ON
+  } else {
+    digitalWrite(relayPin, HIGH); // Pump OFF
+  }
+
+  delay(1000);
+}
